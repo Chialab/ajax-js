@@ -1,0 +1,20 @@
+{
+  "name": "ajax-js",
+  "version": "1.0.0",
+  "authors": [
+    "Chialab s.r.l. <dev@chialab.it> (http://www.chialab.com)"
+  ],
+  "description": "A XMLHttpRequest wrapper.",
+  "main": "dist/ajax.min.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "es6-promise": "~2.2.0"
+  }
+}

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/ajax.es6 | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="http://gitlab.com/chialab/ajax-js">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/src/ajax.es6~Ajax.html">Ajax</a></span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/ajax.es6</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">var defaultOptions = {
+  &apos;async&apos;: true,
+  &apos;timeout&apos;: 1000 * 60,
+  &apos;responseType&apos;: &apos;application/json&apos;,
+  &apos;headers&apos;: {
+    &apos;Content-type&apos;: &apos;application/x-www-form-urlencoded&apos;
+  }
+}
+
+/**
+ * A XMLHttpRequest wrapper.
+ * @class
+ */
+export class Ajax {
+  /**
+   * Exec a XMLHttpRequest.
+   *
+   * ## Options definition
+   * - `String`   *url*           The requested url.
+   * - `Object`   *headers*       A set of headers to set (key =&gt; value).
+   * - `String`   *responseType*  The response type mime.
+   * - `Number`   *timeout*       A value for request timeout (0 =&gt; no timeout).
+   * - `Function` *notify*        A callback function for progress event.
+   * - `Boolean`  *async*         Should exec the request asynchronously.
+   * @static
+   * @param {Object|String} options A set of options (or the url) for the XMLHttpRequest
+   * @return Promise
+   */
+  static request(options = {}) {
+    return new Promise(function(resolve, reject) {
+      var XHR = window.XMLHttpRequest || ActiveXObject;
+      var request = new XHR(&apos;MSXML2.XMLHTTP.3.0&apos;);
+      var resolved = false;
+      if (typeof options == &apos;string&apos;) {
+        options = { &apos;url&apos;: options };
+      }
+      for (var k in Ajax.defaultOptions) {
+        if (options[k] !== undefined) {
+          options[k] = Ajax.defaultOptions[k];
+        }
+      }
+      request.open(options.method || &apos;GET&apos;, options.url, !!options.async);
+      if (options.header) {
+        for (var k in options.header) {
+          request.setRequestHeader(k, options.header[k]);
+        }
+      }
+
+      if (options.responseType) {
+        request.responseType = options.responseType;
+      }
+
+      request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+          var parse = function (req) {
+            var result;
+            if (typeof req.response == &apos;string&apos; &amp;&amp; typeof req.responseText == &apos;string&apos;) {
+              try {
+                result = JSON.parse(req.responseText);
+              } catch (e) {
+                result = req.responseText;
+              }
+            } else {
+              result = req.response;
+            }
+            return result;
+          }
+          resolved = true;
+          if (request.status === 200 || request.status === 304) {
+            resolve(parse(request));
+          } else {
+            reject(request);
+          }
+        }
+      }
+
+      request.onerror = function(er) {
+        resolved = true;
+        reject(request);
+      }
+
+      request.onabort = function(er) {
+        resolved = true;
+        reject(request);
+      }
+
+      request.addEventListener(&apos;progress&apos;, function(e) {
+          var done = e.loaded || e.position, 
+              total = e.total || e.totalSize;
+
+          if (typeof options.notify == &apos;function&apos;) {
+            options.notify(done, total);
+          }
+      }, false);
+      if (request.upload) {
+          request.upload.onprogress = function(e) {
+              var done = e.loaded || e.position,
+                  total = e.total || e.totalSize;
+              if (typeof options.notify == &apos;function&apos;) {
+                options.notify(done, total);
+              }
+          };
+      }
+
+      if (options.timeout) {
+        setTimeout(function() {
+          if (!resolved) {
+            request.timeout = true;
+            request.status = 0;
+            reject(request);
+          }
+        }, options.timeout);
+      }
+
+      try {
+        if (options.data !== undefined) {
+          request.send(options.data);
+        } else {
+          request.send();
+        }
+      } catch(ex) {
+        resolved = true;
+        reject(request);
+      }
+    });
+  }
+  /**
+   * Exec a XMLHttpRequest with method HEAD.
+   * @static
+   * @param {String} url the url for the XMLHttpRequest
+   * @param {Object} options A set of options for the XMLHttpRequest
+   * @return Promise
+   */
+  static head(url, options = {}) {
+    options[&apos;url&apos;] = url;
+    options[&apos;method&apos;] = &apos;HEAD&apos;;
+    return Ajax.request(options);
+  }
+  /**
+   * Exec a XMLHttpRequest with method GET.
+   * @static
+   * @param {String} url the url for the XMLHttpRequest
+   * @param {Object} options A set of options for the XMLHttpRequest
+   * @return Promise
+   */
+  static get(url, options = {}) {
+    options[&apos;url&apos;] = url;
+    options[&apos;method&apos;] = &apos;GET&apos;;
+    return Ajax.request(options);
+  }
+  /**
+   * Exec a XMLHttpRequest with method POST.
+   * @static
+   * @param {String} url the url for the XMLHttpRequest
+   * @param {Object} options A set of options for the XMLHttpRequest
+   * @param {Object} data The data to send in the POST request
+   * @return Promise
+   */
+  static post(url, options = {}, data) {
+    options[&apos;url&apos;] = url;
+    options[&apos;method&apos;] = &apos;POST&apos;;
+    if (data !== undefined) {
+      options[&apos;data&apos;] = data;
+    }
+    return Ajax.request(options);
+  }
+  /**
+   * Exec a XMLHttpRequest with method PUT.
+   * @static
+   * @param {String} url the url for the XMLHttpRequest
+   * @param {Object} options A set of options for the XMLHttpRequest
+   * @param {Object} data The data to send in the PUT request
+   * @return Promise
+   */
+  static put(url, options = {}, data) {
+    options[&apos;url&apos;] = url;
+    options[&apos;method&apos;] = &apos;PUT&apos;;
+    if (data !== undefined) {
+      options[&apos;data&apos;] = data;
+    }
+    return Ajax.request(options);
+  }
+  /**
+   * Exec a XMLHttpRequest with method DELETE.
+   * @static
+   * @param {String} url the url for the XMLHttpRequest
+   * @param {Object} options A set of options for the XMLHttpRequest
+   * @return Promise
+   */
+  static delete(url, options = {}) {
+    options[&apos;url&apos;] = url;
+    options[&apos;method&apos;] = &apos;DELETE&apos;;
+    return Ajax.request(options);
+  }
+
+}
+
+Ajax.defaultOptions = defaultOptions;</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(undefined)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

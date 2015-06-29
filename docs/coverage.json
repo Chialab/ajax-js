@@ -1,0 +1,11 @@
+{
+  "coverage": "100%",
+  "expectCount": 7,
+  "actualCount": 7,
+  "files": {
+    "src/ajax.es6": {
+      "expectCount": 7,
+      "actualCount": 7
+    }
+  }
+}
