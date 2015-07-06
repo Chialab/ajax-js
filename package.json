@@ -2,7 +2,7 @@
   "name": "ajax-js",
   "version": "1.0.0",
   "description": "A XMLHttpRequest wrapper.",
-  "main": "src/ajax.es6",
+  "main": "src/ajax.js",
   "repository": {
     "type": "git",
     "url": "http://gitlab.com/chialab/ajax-js"
@@ -24,7 +24,6 @@
     "karma": "^0.12.36",
     "karma-chrome-launcher": "^0.1.12",
     "karma-jasmine": "^0.3.5",
-    "load-grunt-tasks": "^3.2.0",
-    "npm": "^2.12.1"
+    "load-grunt-tasks": "^3.2.0"
   }
 }
