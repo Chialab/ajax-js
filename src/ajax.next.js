@@ -1,29 +1,29 @@
-var defaultOptions = {
-  'async': true,
-  'timeout': 1000 * 60,
-  'responseType': 'application/json',
-  'headers': {
-    'Content-type': 'application/x-www-form-urlencoded'
-  }
-}
-
 /**
  * A XMLHttpRequest wrapper.
  * @class
  */
-export class Ajax {
+class Ajax {
+  static get defaultOptions() {
+    return {
+      'async': true,
+      'timeout': 1000 * 60,
+      'responseType': 'application/json',
+      'headers': {
+        'Content-type': 'application/x-www-form-urlencoded'
+      }
+    }
+  }
   /**
    * Exec a XMLHttpRequest.
    *
-   * ## Options definition
-   * - `String`   *url*           The requested url.
-   * - `Object`   *headers*       A set of headers to set (key => value).
-   * - `String`   *responseType*  The response type mime.
-   * - `Number`   *timeout*       A value for request timeout (0 => no timeout).
-   * - `Function` *notify*        A callback function for progress event.
-   * - `Boolean`  *async*         Should exec the request asynchronously.
    * @static
    * @param {Object|String} options A set of options (or the url) for the XMLHttpRequest
+   * @property {String}   options.url           The requested url
+   * @property {Object}   options.headers       A set of headers to set (key => value)
+   * @property {String}   options.responseType  The response type mime
+   * @property {Number}   options.timeout       A value for request timeout (0 => no timeout)
+   * @property {Function} options.notify        A callback function for progress event
+   * @property {Boolean}  options.async         Should exec the request asynchronously
    * @return Promise
    */
   static request(options = {}) {
@@ -127,7 +127,7 @@ export class Ajax {
   /**
    * Exec a XMLHttpRequest with method HEAD.
    * @static
-   * @param {String} url the url for the XMLHttpRequest
+   * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
    * @return Promise
    */
@@ -139,7 +139,7 @@ export class Ajax {
   /**
    * Exec a XMLHttpRequest with method GET.
    * @static
-   * @param {String} url the url for the XMLHttpRequest
+   * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
    * @return Promise
    */
@@ -151,7 +151,7 @@ export class Ajax {
   /**
    * Exec a XMLHttpRequest with method POST.
    * @static
-   * @param {String} url the url for the XMLHttpRequest
+   * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
    * @param {Object} data The data to send in the POST request
    * @return Promise
@@ -167,7 +167,7 @@ export class Ajax {
   /**
    * Exec a XMLHttpRequest with method PUT.
    * @static
-   * @param {String} url the url for the XMLHttpRequest
+   * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
    * @param {Object} data The data to send in the PUT request
    * @return Promise
@@ -183,7 +183,7 @@ export class Ajax {
   /**
    * Exec a XMLHttpRequest with method DELETE.
    * @static
-   * @param {String} url the url for the XMLHttpRequest
+   * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
    * @return Promise
    */
@@ -192,7 +192,4 @@ export class Ajax {
     options['method'] = 'DELETE';
     return Ajax.request(options);
   }
-
 }
-
-Ajax.defaultOptions = defaultOptions;

@@ -16,12 +16,12 @@ grunt.initConfig({
         },
         dist: {
             files: {
-                'dist/ajax.js': 'src/ajax.es6'
+                'dist/ajax.js': 'src/ajax.next.js'
             }
         },
         test: {
             files: {
-                '.tmp/ajax.js': 'src/ajax.es6'
+                '.tmp/ajax.js': 'src/ajax.next.js'
             }
         }
     },
@@ -40,11 +40,11 @@ grunt.initConfig({
             }
         }
     },
-    esdoc: {
-        options: {},
+    jsdoc2md: {
         docs: {
-            source: './src',
-            destination: './docs'
+            files: [
+                { src: 'src/ajax.next.js', dest: 'docs/ajax.md' }
+            ]
         }
     },
     karma: {
@@ -65,19 +65,6 @@ grunt.initConfig({
 
 grunt.registerTask('build', ['clean:dist', 'babel:dist', 'uglify:dist']);
 
-grunt.registerTask('esdoc', function(target) {
-    var esdoc = require('esdoc');
-    var publish = require('./node_modules/esdoc/out/src/Publisher/publish.js');
-    var confs = grunt.config.get('esdoc');
-    var options = confs.options || {};
-    if (confs[target || 'default']) {
-        for (var k in confs[target || 'default']) {
-            options[k] = confs[target || 'default'][k];
-        }
-    }
-    esdoc.generate(options, publish);
-});
-
-grunt.registerTask('docs', ['clean:docs', 'esdoc:docs']);
+grunt.registerTask('docs', ['clean:docs', 'jsdoc2md:docs']);
 
 grunt.registerTask('test', ['clean:test', 'babel:test', 'uglify:test', 'karma', 'clean:test'])
