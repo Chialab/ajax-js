@@ -24,7 +24,7 @@ class Ajax {
    * @property {Number}   options.timeout       A value for request timeout (0 => no timeout)
    * @property {Function} options.notify        A callback function for progress event
    * @property {Boolean}  options.async         Should exec the request asynchronously
-   * @return Promise
+   * @return {Promise}
    */
   static request(options = {}) {
     return new Promise(function(resolve, reject) {
@@ -129,7 +129,7 @@ class Ajax {
    * @static
    * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
-   * @return Promise
+   * @return {Promise}
    */
   static head(url, options = {}) {
     options['url'] = url;
@@ -141,7 +141,7 @@ class Ajax {
    * @static
    * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
-   * @return Promise
+   * @return {Promise}
    */
   static get(url, options = {}) {
     options['url'] = url;
@@ -154,7 +154,7 @@ class Ajax {
    * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
    * @param {Object} data The data to send in the POST request
-   * @return Promise
+   * @return {Promise}
    */
   static post(url, options = {}, data) {
     options['url'] = url;
@@ -170,7 +170,7 @@ class Ajax {
    * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
    * @param {Object} data The data to send in the PUT request
-   * @return Promise
+   * @return {Promise}
    */
   static put(url, options = {}, data) {
     options['url'] = url;
@@ -185,7 +185,7 @@ class Ajax {
    * @static
    * @param {String} url The url for the XMLHttpRequest
    * @param {Object} options A set of options for the XMLHttpRequest
-   * @return Promise
+   * @return {Promise}
    */
   static delete(url, options = {}) {
     options['url'] = url;
