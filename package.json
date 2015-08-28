@@ -1,8 +1,8 @@
 {
   "name": "ajax-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A XMLHttpRequest wrapper.",
-  "main": "src/ajax.js",
+  "main": "src/ajax.next.js",
   "repository": {
     "type": "git",
     "url": "http://gitlab.com/chialab/ajax-js"
