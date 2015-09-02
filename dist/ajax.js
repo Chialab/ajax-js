@@ -27,7 +27,7 @@ var Ajax = (function () {
      * @property {Number}   options.timeout       A value for request timeout (0 => no timeout)
      * @property {Function} options.notify        A callback function for progress event
      * @property {Boolean}  options.async         Should exec the request asynchronously
-     * @return Promise
+     * @return {Promise}
      */
     value: function request() {
       var options = arguments[0] === undefined ? {} : arguments[0];
@@ -137,7 +137,7 @@ var Ajax = (function () {
      * @static
      * @param {String} url The url for the XMLHttpRequest
      * @param {Object} options A set of options for the XMLHttpRequest
-     * @return Promise
+     * @return {Promise}
      */
     value: function head(url) {
       var options = arguments[1] === undefined ? {} : arguments[1];
@@ -154,7 +154,7 @@ var Ajax = (function () {
      * @static
      * @param {String} url The url for the XMLHttpRequest
      * @param {Object} options A set of options for the XMLHttpRequest
-     * @return Promise
+     * @return {Promise}
      */
     value: function get(url) {
       var options = arguments[1] === undefined ? {} : arguments[1];
@@ -172,7 +172,7 @@ var Ajax = (function () {
      * @param {String} url The url for the XMLHttpRequest
      * @param {Object} options A set of options for the XMLHttpRequest
      * @param {Object} data The data to send in the POST request
-     * @return Promise
+     * @return {Promise}
      */
     value: function post(url, options, data) {
       if (options === undefined) options = {};
@@ -193,7 +193,7 @@ var Ajax = (function () {
      * @param {String} url The url for the XMLHttpRequest
      * @param {Object} options A set of options for the XMLHttpRequest
      * @param {Object} data The data to send in the PUT request
-     * @return Promise
+     * @return {Promise}
      */
     value: function put(url, options, data) {
       if (options === undefined) options = {};
@@ -213,7 +213,7 @@ var Ajax = (function () {
      * @static
      * @param {String} url The url for the XMLHttpRequest
      * @param {Object} options A set of options for the XMLHttpRequest
-     * @return Promise
+     * @return {Promise}
      */
     value: function _delete(url) {
       var options = arguments[1] === undefined ? {} : arguments[1];

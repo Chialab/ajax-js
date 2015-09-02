@@ -14,7 +14,10 @@
     "bower_components",
     "src",
     "test",
-    "tests"
+    "tests",
+    "dist/**/*.js",
+    "dist/**/!.min.js",
+    "dist/**/*.map",
   ],
   "dependencies": {
     "es6-promise": "^2.2.0"

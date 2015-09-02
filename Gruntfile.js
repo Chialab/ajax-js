@@ -11,10 +11,12 @@ grunt.initConfig({
     },
     babel: {
         options: {
-            sourceMap: true,
             modules: 'ignore'
         },
         dist: {
+            options: {
+                sourceMap: true
+            },
             files: {
                 'dist/ajax.js': 'src/ajax.next.js'
             }
@@ -27,7 +29,7 @@ grunt.initConfig({
     },
     uglify: {
         options: {
-            sourceMap: true
+            sourceMap: false
         },
         dist: {
             files: {
