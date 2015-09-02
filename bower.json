@@ -17,7 +17,7 @@
     "tests",
     "dist/**/*.js",
     "dist/**/!.min.js",
-    "dist/**/*.map",
+    "dist/**/*.map"
   ],
   "dependencies": {
     "es6-promise": "^2.2.0"
