@@ -1,5 +1,5 @@
 {
-  "name": "ajax-js",
+  "name": "chialab-ajax-js",
   "version": "1.0.2",
   "description": "A XMLHttpRequest wrapper.",
   "main": "src/ajax.next.js",
