@@ -33,7 +33,7 @@ grunt.initConfig({
         },
         dist: {
             files: {
-                'dist/ajax.min.js': ['dist/*.js']
+                'dist/ajax.js': ['dist/*.js']
             }
         },
         test: {

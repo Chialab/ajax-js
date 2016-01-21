@@ -1,8 +1,10 @@
+'use strict';
+
 /**
  * A XMLHttpRequest wrapper.
  * @class
  */
-class Ajax {
+export class Ajax {
   static get defaultOptions() {
     return {
       'async': true,
@@ -27,21 +29,21 @@ class Ajax {
    * @return {Promise}
    */
   static request(options = {}) {
-    return new Promise(function(resolve, reject) {
-      var XHR = window.XMLHttpRequest || ActiveXObject;
-      var request = new XHR('MSXML2.XMLHTTP.3.0');
-      var resolved = false;
+    return new Promise((resolve, reject) => {
+      let XHR = window.XMLHttpRequest || ActiveXObject;
+      let request = new XHR('MSXML2.XMLHTTP.3.0');
+      let resolved = false;
       if (typeof options == 'string') {
         options = { 'url': options };
       }
-      for (var k in Ajax.defaultOptions) {
+      for (let k in Ajax.defaultOptions) {
         if (options[k] !== undefined) {
           options[k] = Ajax.defaultOptions[k];
         }
       }
       request.open(options.method || 'GET', options.url, !!options.async);
       if (options.header) {
-        for (var k in options.header) {
+        for (let k in options.header) {
           request.setRequestHeader(k, options.header[k]);
         }
       }
@@ -50,10 +52,10 @@ class Ajax {
         request.responseType = options.responseType;
       }
 
-      request.onreadystatechange = function () {
+      request.onreadystatechange = () => {
         if (request.readyState === 4) {
-          var parse = function (req) {
-            var result;
+          let parse = (req) => {
+            let result;
             if (typeof req.response == 'string' && typeof req.responseText == 'string') {
               try {
                 result = JSON.parse(req.responseText);
@@ -74,18 +76,18 @@ class Ajax {
         }
       }
 
-      request.onerror = function(er) {
+      request.onerror = (er) => {
         resolved = true;
         reject(request);
       }
 
-      request.onabort = function(er) {
+      request.onabort = (er) => {
         resolved = true;
         reject(request);
       }
 
-      request.addEventListener('progress', function(e) {
-          var done = e.loaded || e.position, 
+      request.addEventListener('progress', (e) => {
+          let done = e.loaded || e.position,
               total = e.total || e.totalSize;
 
           if (typeof options.notify == 'function') {
@@ -93,8 +95,8 @@ class Ajax {
           }
       }, false);
       if (request.upload) {
-          request.upload.onprogress = function(e) {
-              var done = e.loaded || e.position,
+          request.upload.onprogress = (e) => {
+              let done = e.loaded || e.position,
                   total = e.total || e.totalSize;
               if (typeof options.notify == 'function') {
                 options.notify(done, total);
@@ -103,7 +105,7 @@ class Ajax {
       }
 
       if (options.timeout) {
-        setTimeout(function() {
+        setTimeout(() => {
           if (!resolved) {
             request.timeout = true;
             request.status = 0;

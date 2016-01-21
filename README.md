@@ -13,7 +13,7 @@ bower install https://gitlab.com/chialab/ajax-js.git
 Using npm:
 
 ```sh
-npm install https://gitlab.com/chialab/ajax-js.git
+npm install git+ssh://git@gitlab.com:chialab/ajax-js.git
 ```
 
 Or download [here](https://gitlab.com/chialab/ajax-js/repository/archive.zip?ref=master)
@@ -49,9 +49,9 @@ The project requires the following major dependencies:
 node --version
 ```
 
-The version should be at or above 0.12.x. 
+The version should be at or above 0.12.x.
 
-2)  If you don't have Node.js installed, or you have a lower version, go to [nodejs.org](https://nodejs.org) and click on the big green Install button. 
+2)  If you don't have Node.js installed, or you have a lower version, go to [nodejs.org](https://nodejs.org) and click on the big green Install button.
 
 3)  Install `grunt`, `karma`, `bower` and `babel` globally.
 
