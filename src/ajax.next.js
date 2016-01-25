@@ -37,7 +37,7 @@ export class Ajax {
         options = { 'url': options };
       }
       for (let k in Ajax.defaultOptions) {
-        if (options[k] !== undefined) {
+        if (typeof options[k] === 'undefined') {
           options[k] = Ajax.defaultOptions[k];
         }
       }

@@ -1,15 +1,16 @@
+import { Ajax } from '../src/ajax.next.js';
+
 describe('Unit: Ajax', function() {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 20 * 1000;
+    this.timeout(20 * 1000);
 
     function createRequest(test) {
         Ajax.request()
     }
 
-    var check = [];
-    var root = 'http://jsonplaceholder.typicode.com';
+    let check = [];
+    let root = 'http://jsonplaceholder.typicode.com';
 
-    
-    var promises = [];
+    let promises = [];
     promises.push(Ajax.request(root + '/posts').then(function(res) {
         check[0] = res[0].id;
     }));
@@ -26,32 +27,25 @@ describe('Unit: Ajax', function() {
     promises.push(Ajax.delete(root + '/posts/1').then(function(res) {
         check[3] = true;
     }));
-    // promises.push(Ajax.request('http://am.a.com').catch(function(res) {
-    //     check[1] = res.status;
-    // }));
-    
-    beforeEach(function(done) {
-        Promise.all(promises).then(done, done);
+
+    beforeEach(function() {
+        return Promise.all(promises);
     });
 
     it('should exec a simple request', function() {
-        expect(check[0]).toBe(1);
+        assert.equal(check[0], 1);
     });
 
     it('should exec a simple GET request', function() {
-        expect(check[1]).toBe(1);
+        assert.equal(check[1], 1);
     });
 
     it('should exec a simple POST request', function() {
-        expect(check[2]).toBe(101);
+        assert.equal(check[2], 101);
     });
 
     it('should exec a simple DELETE request', function() {
-        expect(check[3]).toBe(true);
+        assert.equal(check[3], true);
     });
-
-    // it('404 simple request', function() {
-    //     expect(check[1]).toBe(404);
-    // });
 
 });

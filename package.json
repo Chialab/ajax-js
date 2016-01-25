@@ -1,11 +1,20 @@
 {
   "name": "chialab-ajax-js",
-  "version": "1.0.3",
+  "build": {
+    "bundleName": "ajax.js",
+    "globalName": "Ajax"
+  },
+  "version": "1.0.4",
   "description": "A XMLHttpRequest wrapper.",
   "main": "src/ajax.next.js",
   "repository": {
     "type": "git",
     "url": "http://gitlab.com/chialab/ajax-js"
+  },
+  "scripts": {
+    "build": "node ./node_modules/es6-workflow/scripts/build.js",
+    "doc": "node ./node_modules/es6-workflow/scripts/doc.js",
+    "test": "node ./node_modules/es6-workflow/scripts/test.js"
   },
   "author": "Chialab s.r.l. <dev@chialab.it> (http://www.chialab.com)",
   "license": "MIT",
@@ -13,17 +22,6 @@
     "es6-promise": "^2.2.0"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-babel": "^5.0.1",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-uglify": "^0.9.1",
-    "grunt-jsdoc-to-markdown": "^1.1.1",
-    "grunt-karma": "^0.11.0",
-    "jasmine-core": "^2.3.4",
-    "jsdoc": "git+https://github.com/jsdoc3/jsdoc.git",
-    "karma": "^0.12.36",
-    "karma-chrome-launcher": "^0.1.12",
-    "karma-jasmine": "^0.3.5",
-    "load-grunt-tasks": "^3.2.0"
+    "es6-workflow": "git+https://github.com/Chialab/es6-workflow.git"
   }
 }
