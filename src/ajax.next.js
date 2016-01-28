@@ -9,8 +9,9 @@ export class Ajax {
     return {
       'async': true,
       'timeout': 1000 * 60,
-      'responseType': 'application/json',
+      'responseType': 'json',
       'headers': {
+        'X-Requested-With': 'XMLHttpRequest',
         'Content-type': 'application/x-www-form-urlencoded'
       }
     }
