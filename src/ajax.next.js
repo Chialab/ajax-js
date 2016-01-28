@@ -43,9 +43,9 @@ export class Ajax {
         }
       }
       request.open(options.method || 'GET', options.url, !!options.async);
-      if (options.header) {
-        for (let k in options.header) {
-          request.setRequestHeader(k, options.header[k]);
+      if (options.headers) {
+        for (let k in options.headers) {
+          request.setRequestHeader(k, options.headers[k]);
         }
       }
 
