@@ -15,7 +15,7 @@
     "src",
     "test",
     "tests",
-    "dist/**/*.js"
+    "dist/**/*.map"
   ],
   "dependencies": {
     "es6-promise": "^2.2.0"
