@@ -1,5 +1,8 @@
 import { Ajax } from '../src/ajax.js';
 
+// IE9 fix
+sinon.xhr.supportsCORS = true;
+
 /* globals describe, before, after, beforeEach, it, assert, sinon */
 describe('Unit: Ajax', function() {
     this.timeout(20 * 1000);
