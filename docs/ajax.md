@@ -1,19 +1,25 @@
 <a name="Ajax"></a>
-## Ajax
-A XMLHttpRequest wrapper.
 
+## Ajax
 **Kind**: global class  
 
 * [Ajax](#Ajax)
-  * [.request(options)](#Ajax.request) ⇒ <code>Promise</code>
-  * [.head(url, options)](#Ajax.head) ⇒ <code>Promise</code>
-  * [.get(url, options)](#Ajax.get) ⇒ <code>Promise</code>
-  * [.post(url, options, data)](#Ajax.post) ⇒ <code>Promise</code>
-  * [.put(url, options, data)](#Ajax.put) ⇒ <code>Promise</code>
-  * [.delete(url, options)](#Ajax.delete) ⇒ <code>Promise</code>
+    * [`new Ajax()`](#new_Ajax_new)
+    * [`.request(options)`](#Ajax.request) ⇒ <code>Promise</code>
+    * [`.head(url, options)`](#Ajax.head) ⇒ <code>Promise</code>
+    * [`.get(url, options)`](#Ajax.get) ⇒ <code>Promise</code>
+    * [`.post(url, options, data)`](#Ajax.post) ⇒ <code>Promise</code>
+    * [`.put(url, options, data)`](#Ajax.put) ⇒ <code>Promise</code>
+    * [`.delete(url, options)`](#Ajax.delete) ⇒ <code>Promise</code>
+
+<a name="new_Ajax_new"></a>
+
+### `new Ajax()`
+A XMLHttpRequest wrapper.
 
 <a name="Ajax.request"></a>
-### Ajax.request(options) ⇒ <code>Promise</code>
+
+### `Ajax.request(options)` ⇒ <code>Promise</code>
 Exec a XMLHttpRequest.
 
 **Kind**: static method of <code>[Ajax](#Ajax)</code>  
@@ -34,7 +40,8 @@ Exec a XMLHttpRequest.
 | options.async | <code>Boolean</code> | Should exec the request asynchronously |
 
 <a name="Ajax.head"></a>
-### Ajax.head(url, options) ⇒ <code>Promise</code>
+
+### `Ajax.head(url, options)` ⇒ <code>Promise</code>
 Exec a XMLHttpRequest with method HEAD.
 
 **Kind**: static method of <code>[Ajax](#Ajax)</code>  
@@ -45,7 +52,8 @@ Exec a XMLHttpRequest with method HEAD.
 | options | <code>Object</code> | A set of options for the XMLHttpRequest |
 
 <a name="Ajax.get"></a>
-### Ajax.get(url, options) ⇒ <code>Promise</code>
+
+### `Ajax.get(url, options)` ⇒ <code>Promise</code>
 Exec a XMLHttpRequest with method GET.
 
 **Kind**: static method of <code>[Ajax](#Ajax)</code>  
@@ -56,7 +64,8 @@ Exec a XMLHttpRequest with method GET.
 | options | <code>Object</code> | A set of options for the XMLHttpRequest |
 
 <a name="Ajax.post"></a>
-### Ajax.post(url, options, data) ⇒ <code>Promise</code>
+
+### `Ajax.post(url, options, data)` ⇒ <code>Promise</code>
 Exec a XMLHttpRequest with method POST.
 
 **Kind**: static method of <code>[Ajax](#Ajax)</code>  
@@ -68,7 +77,8 @@ Exec a XMLHttpRequest with method POST.
 | data | <code>Object</code> | The data to send in the POST request |
 
 <a name="Ajax.put"></a>
-### Ajax.put(url, options, data) ⇒ <code>Promise</code>
+
+### `Ajax.put(url, options, data)` ⇒ <code>Promise</code>
 Exec a XMLHttpRequest with method PUT.
 
 **Kind**: static method of <code>[Ajax](#Ajax)</code>  
@@ -80,7 +90,8 @@ Exec a XMLHttpRequest with method PUT.
 | data | <code>Object</code> | The data to send in the PUT request |
 
 <a name="Ajax.delete"></a>
-### Ajax.delete(url, options) ⇒ <code>Promise</code>
+
+### `Ajax.delete(url, options)` ⇒ <code>Promise</code>
 Exec a XMLHttpRequest with method DELETE.
 
 **Kind**: static method of <code>[Ajax](#Ajax)</code>  

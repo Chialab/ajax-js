@@ -1,6 +1,6 @@
 /**
  * A XMLHttpRequest wrapper.
- * @class
+ * @class Ajax
  */
 export class Ajax {
     static get defaultOptions() {
