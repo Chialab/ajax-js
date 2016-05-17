@@ -5,4 +5,6 @@ module.exports = function(karma) {
         browserNoActivityTimeout: 20 * 1000,
         browserDisconnectTimeout: 20 * 1000,
     });
+    karma.plugins.push('karma-sinon');
+    karma.frameworks.push('sinon');
 };
