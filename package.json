@@ -2,26 +2,28 @@
   "name": "chialab-ajax-js",
   "build": {
     "bundleName": "ajax.js",
-    "globalName": "Ajax"
+    "exportName": "Ajax"
   },
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "A XMLHttpRequest wrapper.",
-  "main": "src/ajax.next.js",
+  "main": "src/ajax.js",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.com/chialab/ajax-js"
+    "url": "http://github.com/Chialab/ajax-js"
   },
   "scripts": {
     "build": "node ./node_modules/es6-workflow/scripts/build.js",
     "doc": "node ./node_modules/es6-workflow/scripts/doc.js",
-    "test": "node ./node_modules/es6-workflow/scripts/test.js"
+    "test": "node ./node_modules/es6-workflow/scripts/test.js",
+    "add-editorconfig": "node ./node_modules/es6-workflow/scripts/add-editorconfig.js",
+    "add-eslint": "node ./node_modules/es6-workflow/scripts/add-eslint.js",
+    "add-travis": "node ./node_modules/es6-workflow/scripts/add-travis.js",
+    "codecov": "node ./node_modules/es6-workflow/scripts/codecov.js",
+    "test-ci": "node ./node_modules/es6-workflow/scripts/test-ci.js"
   },
-  "author": "Chialab s.r.l. <dev@chialab.it> (http://www.chialab.com)",
+  "author": "Chialab <dev@chialab.io> (http://www.chialab.com)",
   "license": "MIT",
-  "dependencies": {
-    "es6-promise": "^2.2.0"
-  },
   "devDependencies": {
-    "es6-workflow": "git+https://github.com/Chialab/es6-workflow.git"
+    "es6-workflow": "^0.4.1"
   }
 }
