@@ -1,5 +1,5 @@
 {
-  "name": "chialab-ajax-js",
+  "name": "chialab-ajax",
   "build": {
     "bundleName": "ajax.js",
     "exportName": "Ajax"
