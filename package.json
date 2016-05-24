@@ -4,7 +4,7 @@
     "bundleName": "ajax.js",
     "exportName": "Ajax"
   },
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A XMLHttpRequest wrapper.",
   "main": "src/ajax.js",
   "repository": {
