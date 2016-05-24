@@ -60,10 +60,28 @@ export class Ajax {
                 if (request.readyState === 4) {
                     let parse = (req) => {
                         let result;
-                        if (req.responseType === 'text' && typeof req.responseText === 'string') {
+                        if (options.responseType === 'text' &&
+                            typeof req.responseText === 'string') {
                             result = req.responseText;
                         } else if (typeof req.response !== 'undefined') {
-                            result = req.response;
+                            if (options.responseType === 'json' &&
+                                typeof req.response === 'string') {
+                                result = JSON.parse(req.response);
+                            } else {
+                                result = req.response;
+                            }
+                        } else {
+                            // IE workaround
+                            try {
+                                if (options.responseType === 'json' &&
+                                    typeof req.responseText === 'string') {
+                                    result = JSON.parse(req.responseText);
+                                } else {
+                                    result = req.responseText;
+                                }
+                            } catch (ex) {
+                                result = req.responseText;
+                            }
                         }
                         return result;
                     };
