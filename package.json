@@ -2,11 +2,12 @@
   "name": "chialab-ajax",
   "build": {
     "bundleName": "ajax.js",
-    "exportName": "Ajax"
+    "exportDefault": true,
+    "globalName": "Ajax"
   },
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A XMLHttpRequest wrapper.",
-  "main": "src/ajax.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "http://github.com/Chialab/ajax-js"
@@ -19,12 +20,13 @@
     "add-eslint": "node ./node_modules/es6-workflow/scripts/add-eslint.js",
     "add-travis": "node ./node_modules/es6-workflow/scripts/add-travis.js",
     "codecov": "node ./node_modules/es6-workflow/scripts/codecov.js",
-    "test-ci": "node ./node_modules/es6-workflow/scripts/test-ci.js"
+    "test-ci": "node ./node_modules/es6-workflow/scripts/test-ci.js",
+    "coveralls": "node ./node_modules/es6-workflow/scripts/coveralls.js"
   },
   "author": "Chialab <dev@chialab.io> (http://www.chialab.com)",
   "license": "MIT",
   "devDependencies": {
-    "es6-workflow": "^0.4.1",
+    "es6-workflow": "^0.4.6",
     "karma-sinon": "^1.0.5",
     "sinon": "^1.17.4"
   }
