@@ -39,4 +39,4 @@ var xhrPost = Ajax.post('http://my.api.url/', { title: 'Hello.' })
 [![Travis](https://img.shields.io/travis/Chialab/ajax-js.svg?maxAge=2592000)](https://travis-ci.org/Chialab/ajax-js)
 [![Code coverage](https://codecov.io/gh/Chialab/ajax-js/branch/master/graph/badge.svg)](https://codecov.io/gh/Chialab/ajax-js)
 
-![Sauce Test Status](https://saucelabs.com/browser-matrix/chialab-sl-002.svg)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/chialab-sl-002.svg)](https://saucelabs.com/u/chialab-sl-002)
