@@ -26,7 +26,7 @@
   "author": "Chialab <dev@chialab.io> (http://www.chialab.com)",
   "license": "MIT",
   "devDependencies": {
-    "es6-workflow": "^0.4.6",
+    "es6-workflow": "latest",
     "karma-sinon": "^1.0.5",
     "sinon": "^1.17.4"
   }

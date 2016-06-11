@@ -2,6 +2,15 @@ language: node_js
 node_js:
   - "6"
 
+env:
+  matrix:
+    - "CI_BUILD_TYPE=default"
+    - "CI_BUILD_TYPE=saucelabs"
+
+matrix:
+  allow_failures:
+    - env: "CI_BUILD_TYPE=saucelabs"
+
 before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
@@ -14,4 +23,5 @@ script:
   - npm run test-ci
 
 after_success:
-  - npm run codecov
+  - if [ "$CI_BUILD_TYPE" = 'default' ]; then npm run codecov; fi
+  - if [ "$CI_BUILD_TYPE" = 'default' ]; then npm run coveralls; fi
