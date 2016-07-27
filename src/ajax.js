@@ -15,28 +15,36 @@ export class Ajax {
         };
     }
     /**
+     * Instantiate a XMLHttpRequest.
+     * @return {XMLHttpRequest}
+     */
+    static create() {
+        const XHR = window.XMLHttpRequest || window.ActiveXObject;
+        return new XHR('MSXML2.XMLHTTP.3.0');
+    }
+    /**
      * Exec a XMLHttpRequest.
      *
      * @static
      * @param {Object|String} options A set of options (or the url) for the XMLHttpRequest
-     * @property {String}   options.url           The requested url
-     * @property {Object}   options.headers       A set of headers to set (key => value)
-     * @property {String}   options.responseType  The response type mime
-     * @property {Number}   options.timeout       A value for request timeout (0 => no timeout)
-     * @property {Function} options.notify        A callback function for progress event
-     * @property {Boolean}  options.async         Should exec the request asynchronously
+     * @property {String}   options.url           The requested url.
+     * @property {Object}   options.headers       A set of headers to set (key => value).
+     * @property {String}   options.responseType  The response type mime.
+     * @property {Number}   options.timeout       A value for request timeout (0 => no timeout).
+     * @property {Function} options.notify        A callback function for progress event.
+     * @property {Boolean}  options.async         Should exec the request asynchronously.
+     * @property {XMLHttpRequest}  options.xhr    The xhr instance to use (optional).
      * @return {Promise}
      */
     static request(options = {}) {
+        if (typeof options === 'string') {
+            options = {
+                url: options,
+            };
+        }
         return new Promise((resolve, reject) => {
-            let XHR = window.XMLHttpRequest || window.ActiveXObject;
-            let request = new XHR('MSXML2.XMLHTTP.3.0');
+            let request = options.xhr || Ajax.create();
             let resolved = false;
-            if (typeof options === 'string') {
-                options = {
-                    url: options,
-                };
-            }
             for (let k in Ajax.defaultOptions) {
                 if (typeof options[k] === 'undefined') {
                     options[k] = Ajax.defaultOptions[k];
@@ -144,33 +152,33 @@ export class Ajax {
     /**
      * Exec a XMLHttpRequest with method HEAD.
      * @static
-     * @param {String} url The url for the XMLHttpRequest
-     * @param {Object} options A set of options for the XMLHttpRequest
+     * @param {String} url The url for the XMLHttpRequest.
+     * @param {Object} options A set of options for the XMLHttpRequest.
      * @return {Promise}
      */
     static head(url, options = {}) {
         options.url = url;
         options.method = 'HEAD';
-        return Ajax.request(options);
+        return this.request(options);
     }
     /**
      * Exec a XMLHttpRequest with method GET.
      * @static
-     * @param {String} url The url for the XMLHttpRequest
-     * @param {Object} options A set of options for the XMLHttpRequest
+     * @param {String} url The url for the XMLHttpRequest.
+     * @param {Object} options A set of options for the XMLHttpRequest.
      * @return {Promise}
      */
     static get(url, options = {}) {
         options.url = url;
         options.method = 'GET';
-        return Ajax.request(options);
+        return this.request(options);
     }
     /**
      * Exec a XMLHttpRequest with method POST.
      * @static
-     * @param {String} url The url for the XMLHttpRequest
-     * @param {Object} options A set of options for the XMLHttpRequest
-     * @param {Object} data The data to send in the POST request
+     * @param {String} url The url for the XMLHttpRequest.
+     * @param {Object} options A set of options for the XMLHttpRequest.
+     * @param {Object} data The data to send in the POST request.
      * @return {Promise}
      */
     static post(url, options = {}, data) {
@@ -179,14 +187,14 @@ export class Ajax {
         if (data !== undefined) {
             options.data = data;
         }
-        return Ajax.request(options);
+        return this.request(options);
     }
     /**
      * Exec a XMLHttpRequest with method PUT.
      * @static
-     * @param {String} url The url for the XMLHttpRequest
-     * @param {Object} options A set of options for the XMLHttpRequest
-     * @param {Object} data The data to send in the PUT request
+     * @param {String} url The url for the XMLHttpRequest.
+     * @param {Object} options A set of options for the XMLHttpRequest.
+     * @param {Object} data The data to send in the PUT request.
      * @return {Promise}
      */
     static put(url, options = {}, data) {
@@ -195,18 +203,73 @@ export class Ajax {
         if (data !== undefined) {
             options.data = data;
         }
-        return Ajax.request(options);
+        return this.request(options);
     }
     /**
      * Exec a XMLHttpRequest with method DELETE.
      * @static
-     * @param {String} url The url for the XMLHttpRequest
-     * @param {Object} options A set of options for the XMLHttpRequest
+     * @param {String} url The url for the XMLHttpRequest.
+     * @param {Object} options A set of options for the XMLHttpRequest.
      * @return {Promise}
      */
     static delete(url, options = {}) {
         options.url = url;
         options.method = 'DELETE';
+        return this.request(options);
+    }
+    /**
+     * Create an Ajax instance.
+     * @property {XMLHttpRequest} this.xhr The XMLHttpRequest to use.
+     */
+    constructor() {
+        this.xhr = this.constructor.create();
+    }
+    /**
+     * Exec a XMLHttpRequest.
+     * @see Ajax.request
+     */
+    request(options = {}) {
+        if (typeof options === 'string') {
+            options = {
+                url: options,
+            };
+        }
+        options.xhr = this.xhr;
         return Ajax.request(options);
+    }
+    /**
+     * Exec a XMLHttpRequest with method HEAD.
+     * @see Ajax.head
+     */
+    head(...args) {
+        return Ajax.head.call(this, ...args);
+    }
+    /**
+     * Exec a XMLHttpRequest with method GET.
+     * @see Ajax.get
+     */
+    get(...args) {
+        return Ajax.get.call(this, ...args);
+    }
+    /**
+     * Exec a XMLHttpRequest with method POST.
+     * @see Ajax.post
+     */
+    post(...args) {
+        return Ajax.post.call(this, ...args);
+    }
+    /**
+     * Exec a XMLHttpRequest with method PUT.
+     * @see Ajax.put
+     */
+    put(...args) {
+        return Ajax.put.call(this, ...args);
+    }
+    /**
+     * Exec a XMLHttpRequest with method DELETE.
+     * @see Ajax.delete
+     */
+    delete(...args) {
+        return Ajax.delete.call(this, ...args);
     }
 }
